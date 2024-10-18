@@ -1,0 +1,46 @@
+<ng-container *ngIf="!loading">
+  <div class="flex justify-end px-20">
+    <input
+      type="text"
+      placeholder="Search users"
+      [(ngModel)]="searchText"
+      class="mb-4 p-2 border border-gray-300 rounded"
+    />
+  </div>
+
+  <div class="w-full flex flex-wrap justify-center py-10">
+    <div
+      *ngFor="let user of filteredTodos()"
+      class="flex bg-slate-50 bg-opacity-95 w-3/4 m-8 rounded"
+    >
+      <img
+        src="{{ user.image }}"
+        alt="image"
+        class="p-4 object-contain"
+        width="200"
+      />
+      <div class="flex flex-col justify-start p-4">
+        <h1 class="font-extrabold text-lg mb">
+          {{ user.firstName }} {{ user.lastName }}
+        </h1>
+        <p class="text-xs mb-4">{{ user.title }}</p>
+        <ul *ngFor="let todoArr of user.todos">
+          <li
+            [ngClass]="{
+              'bg-green-100': todoArr.completed,
+              'bg-red-100': !todoArr.completed
+            }"
+            class="p-2 my-2 flex"
+          >
+            <input
+              type="checkbox"
+              [(ngModel)]="todoArr.completed"
+              (change)="toggleTodoCompletion(todoArr.id, todoArr.completed)"
+            />
+            <p class="ms-2">{{ todoArr.todo }}</p>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</ng-container>

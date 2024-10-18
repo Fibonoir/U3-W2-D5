@@ -1,0 +1,50 @@
+<div *ngIf="!isLoadingTodos && !isLoadingTodos">
+  <div class="flex justify-end px-20">
+    <input
+      type="text"
+      placeholder="Search users"
+      [(ngModel)]="searchText"
+      class="mb-4 p-2 border border-gray-300 rounded"
+    />
+  </div>
+
+  <ul class="px-6 w-full">
+    <li
+      *ngFor="let task of filteredTodos()"
+      class="p-4 m-4 flex justify-between w-1/2 mx-auto bg-slate-50 bg-opacity-95"
+    >
+      <input
+        type="checkbox"
+        [(ngModel)]="task.completed"
+        (change)="toggleTodoCompletion(task.id, task.completed)"
+      />
+      <div class="w-full flex flex-col px-4">
+        <p
+          class="mb-4 font-bold text-lg p-4 bg-slate-700 text-white text-center"
+        >
+          {{ task.todo }}
+        </p>
+        <p class="text-xs text-center">Assigned to {{ task.userName }}</p>
+        <p
+          *ngIf="task.completed"
+          class="text-green-600 font-bold text-sm text-center"
+        >
+          Completed
+        </p>
+        <p
+          *ngIf="!task.completed"
+          class="text-red-600 font-bold text-sm text-center"
+        >
+          TO COMPLETE
+        </p>
+      </div>
+    </li>
+  </ul>
+
+  <div
+    *ngIf="filteredTodos.length === 0"
+    class="text-center align-middle font-bold text-4xl"
+  >
+    <p>No matching found for "{{ searchText }}" user</p>
+  </div>
+</div>

@@ -1,0 +1,27 @@
+<div class="p-4 flex justify-between bg-slate-700 sticky top-0">
+  <img
+    src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1f/Futurama_Planet_Express.svg/400px-Futurama_Planet_Express.svg.png?20101206001812"
+    alt="logo"
+    width="60"
+  />
+  <div>
+    <button
+      [routerLink]="'/completed'"
+      class="p-2 rounded-sm bg-amber-200 text-slate-800 font-bold mx-8"
+    >
+      COMPLETED
+    </button>
+    <button
+      [routerLink]="'/users'"
+      class="p-2 rounded-sm bg-amber-200 text-slate-800 font-bold mx-8"
+    >
+      USERS
+    </button>
+    <button
+      [routerLink]="'/'"
+      class="p-2 rounded-sm bg-amber-200 text-slate-800 font-bold mx-8"
+    >
+      HOME
+    </button>
+  </div>
+</div>
